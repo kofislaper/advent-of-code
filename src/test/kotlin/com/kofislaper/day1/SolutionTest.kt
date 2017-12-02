@@ -1,6 +1,5 @@
 package com.kofislaper.day1
 
-import com.kofislaper.day1.part1.Solution
 import org.junit.Test
 import kotlin.test.assertEquals
 

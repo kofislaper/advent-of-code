@@ -1,6 +1,5 @@
 package com.kofislaper.day1
 
-import com.kofislaper.day1.part1.Solution
 import java.io.File
 
 fun main(args: Array<String>) {

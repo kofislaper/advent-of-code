@@ -1,4 +1,4 @@
-package com.kofislaper.day1.part1
+package com.kofislaper.day1
 
 class Solution {
     fun sumElementsEqualToNext(elements: List<Int>): Long {
