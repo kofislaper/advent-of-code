@@ -10,4 +10,13 @@ class Solution {
                 .map { elementsStartingWithLast[it].toLong() }
                 .sum()
     }
+
+    fun sumElementsEqualToOneInNextHalfOfList(elements: List<Int>): Long {
+        val joined: List<Int> = elements + elements
+
+        return elements.indices
+                .filter { joined[it] == joined[it + elements.size / 2] }
+                .map { joined[it].toLong() }
+                .sum()
+    }
 }
