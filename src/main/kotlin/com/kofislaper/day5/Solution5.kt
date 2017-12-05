@@ -5,32 +5,24 @@ import java.io.File
 class Solution5 {
     fun countJumpsBeforeExit(offsets: MutableList<Int>): Int {
 
-        tailrec fun jump(position: Int, jumps: Int): Int {
-            if (position >= offsets.size || position < 0) {
-                return jumps
-            }
-            val jump = offsets[position]
-            offsets[position]++
-            return jump(position + jump, jumps + 1)
-        }
-        return jump(0, 0)
+        fun incrementBy1(): (Int) -> Int = { i -> i + 1 }
+
+        return jump(0, 0, offsets, incrementBy1())
     }
 
     fun countJumpsBeforeExit2(offsets: MutableList<Int>): Int {
+        fun conditionalIncrement(): (Int) -> Int = { i -> if (i >= 3) i - 1 else i + 1 }
 
-        tailrec fun jump(position: Int, jumps: Int): Int {
-            if (position >= offsets.size || position < 0) {
-                return jumps
-            }
-            val jump = offsets[position]
-            if (jump >= 3) {
-                offsets[position]--
-            } else {
-                offsets[position]++
-            }
-            return jump(position + jump, jumps + 1)
+        return jump(0, 0, offsets, conditionalIncrement())
+    }
+
+    private tailrec fun jump(position: Int, jumps: Int, offsets: MutableList<Int>, increment: (Int) -> Int): Int {
+        if (position >= offsets.size || position < 0) {
+            return jumps
         }
-        return jump(0, 0)
+        val jump = offsets[position]
+        offsets[position] = increment(offsets[position])
+        return jump(position + jump, jumps + 1, offsets, increment)
     }
 
 }
